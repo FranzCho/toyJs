@@ -5,6 +5,11 @@
     return document.querySelector(target)
   }
 
+  const API_URL = `http://localhost:3000/todos`
+  const $todos = get('.todos')
+  const $form = get('.todo_form')
+  const $todoInput = get('.todo_input') 
+
   const createTodoElement = (item) => {
     const { id, content } = item
     const $todoItem = document.createElement('div')
@@ -39,6 +44,52 @@
     return $todoItem
   }
 
-  const init = () => {}
+  const renderAllTodos = (todos) => {
+    $todos.innerHTML = ''
+    todos.forEach(item => {
+      const todoElement = createTodoElement(item)
+      $todos.appendChild(todoElement)
+    })
+  }
+  
+  const getTodos = () => {
+    fetch(API_URL)
+      .then((response) => response.json())
+      .then((todos) => renderAllTodos(todos))
+      .catch((error) => console.error(error))
+  }
+
+  const addTodo = (e) => {
+    e.preventDefault()
+    const todo = {
+      content: $todoInput.value,
+      completed: false,
+    }
+    fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(todo),
+    }).then(getTodos).then(() => {
+      $todoInput.value = ''
+      $todoInput.focus()
+    }).catch(error => console.error(error))
+  }
+
+  //checkbox
+  const toggleTodo = (e) => {
+    if (e.target.className !== 'todo_checkbox') return
+    const $item = e.target.closest('.item')
+    console.log($item)
+  }
+
+  const init = () => {
+    window.addEventListener('DOMContentLoaded', () => {
+      getTodos()
+    })
+    $form.addEventListener('submit', addTodo)
+    $todos.addEventListener('click', toggleTodo)
+  }
   init()
 })()
