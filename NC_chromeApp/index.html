@@ -4,17 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.scss" />
+    <link rel="stylesheet" href="./css/style.scss" />
 
     <title>Franz App</title>
   </head>
 
   <body>
-    <form class="hidden" id="login-form">
-      <input required maxlength="15" type="text" placeholder="이름을 입력해주세요" />
-      <input type="submit" value="로그인" />
-    </form>
+    <section class="clock-section">
+      <h2 id="clock">00:00:00</h2>
+    </section>
+    <section class="login-section">
+      <form class="hidden" id="login-form">
+        <input required maxlength="15" type="text" placeholder="이름을 입력해주세요" />
+        <input type="submit" value="로그인" />
+      </form>
+    </section>
+    <section class="quote-section">
+      <div id="quote">
+        <span></span>
+        <span></span>
+      </div>
+    </section>
     <h1 id="greeting" class="hidden"></h1>
-    <script src="./app.js"></script>
+    <script src="./js/greetings.js"></script>
+    <script src="./js/clock.js"></script>
+    <script src="./js/quote.js"></script>
+    <script src="./js/background.js"></script>
   </body>
 </html>
