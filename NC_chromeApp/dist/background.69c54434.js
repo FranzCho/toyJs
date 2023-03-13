@@ -117,13 +117,30 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/background.js":[function(require,module,exports) {
-var images = ["1.jpeg", "london1.jpg", "london2.jpg", "universe.jpg"];
+})({"img/1.jpeg":[function(require,module,exports) {
+module.exports = "/1.9296fedd.jpeg";
+},{}],"img/2.jpg":[function(require,module,exports) {
+module.exports = "/2.3ca6bb44.jpg";
+},{}],"img/3.jpg":[function(require,module,exports) {
+module.exports = "/3.a433b89d.jpg";
+},{}],"img/4.jpg":[function(require,module,exports) {
+module.exports = "/4.c6d96be5.jpg";
+},{}],"js/background.js":[function(require,module,exports) {
+"use strict";
+
+var _ = _interopRequireDefault(require("../img/1.jpeg"));
+var _2 = _interopRequireDefault(require("../img/2.jpg"));
+var _3 = _interopRequireDefault(require("../img/3.jpg"));
+var _4 = _interopRequireDefault(require("../img/4.jpg"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var images = [_.default, _2.default, _3.default, _4.default];
 var chosenImage = images[Math.floor(Math.random() * images.length)];
 var bgImage = document.createElement("img");
-bgImage.src = "img/".concat(chosenImage);
+console.log(_.default);
+bgImage.src = chosenImage;
 document.body.appendChild(bgImage);
-},{}],"../../../../../opt/homebrew/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+bgImage.classList.add("imgFile");
+},{"../img/1.jpeg":"img/1.jpeg","../img/2.jpg":"img/2.jpg","../img/3.jpg":"img/3.jpg","../img/4.jpg":"img/4.jpg"}],"../../../../../opt/homebrew/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -148,7 +165,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49832" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52565" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
